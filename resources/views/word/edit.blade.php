@@ -2,8 +2,8 @@
 
 @section('content')
     <h2>英単語編集</h2>
-    <div>
-        <form action="{{route('word.update',$word->id)}}" method="post">
+     <div>
+        <form action="{{ url("word/{$word->notebook_id}/update/{$word->id}")}}" method="post">
             @method('PUT')
             @csrf
             <select name="kind">
@@ -30,10 +30,10 @@
                      />
 
                 </div>
-
                     <div>
-                        <a href="{{ route('word.index') }}" role="button">戻る</a>
+                        <a href="{{ url("word/{$word->notebook_id}")}}" role="button">戻る</a>
                         <button type="submit">編集</button>
+                        <input type="hidden" id="id" name="id" value="{{$word->id}}">
                     </div>
         </form>
     </div>

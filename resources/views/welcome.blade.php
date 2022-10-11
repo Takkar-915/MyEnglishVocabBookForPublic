@@ -2,7 +2,9 @@
 
 @section('content')
     <div>
-        <h2>Welcome to this app!</h2>
+        <h2>My English vocabulary notebook</h2>
+
+        <p>オリジナルの英単語帳を作成できるアプリです！！！</p>
 
     </div>
 

@@ -1,12 +1,15 @@
 @extends('layouts.app')
 
-
 @section('content')
 <div>
     <h1>英単語一覧</h1>
 
     <div>
-        <button onclick="location.href='{{ route('word.create')}}'">新しく英単語を登録する</button>
+        <a href='{{ url("word/{$notebook_id}/create")}}'>新しく英単語を登録する</a>
+    </div>
+
+    <div>
+        <a href='{{ url("home")}}'>単語帳一覧に戻る</a>
     </div>
 
     <div>
@@ -33,16 +36,25 @@
                             <td></td>
                         @endif
                         <td>
-                            <button onclick="location.href='{{ route('word.edit', $word->id) }}'">編集</button>
+                            {{-- <a href='{{ url("word/{$notebook_id}/edit/{$word->id}")}}'>編集</a> --}}
+                            {{-- <a href='{{ url("word/{$notebook_id}/edit",[$id = $word->id])}}'>編集</a> --}}
+                            <form action={{ url("word/{$notebook_id}/edit/{$word->id}")}} method="get">
+                                <div>
+                                    <input type="hidden" id="id" name="id" value="{{$word->id}}">
+                                    <input type="submit" value="編集">
+                                </div>
+                            </form>
                         </td>
                         <td>
-                            <form action="{{ route('word.destroy', $word->id) }}" method="post">
+                            <form action="{{ url("word/{$notebook_id}/destroy/{$word->id}")}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit"
-                                    onclick="return confirm('削除してもよろしいですか?');">
-                                    削除
-                                </button>
+                                <div>
+                                    <input type="hidden" id="id" name="id" value="{{$word->id}}">
+                                    <button type="submit"
+                                    onclick="return confirm('削除してもよろしいですか?');">削除</button>
+                                </div>
+
                             </form>
                         </td>
                     </tr>

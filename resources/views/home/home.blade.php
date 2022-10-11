@@ -19,12 +19,12 @@
             </div>
         </div>
     </div>
-
     <div>
-        <a href='{{ url('home/create')}}'>新しく英単語帳を作成する</a>
-    </div>
-
-    <div>
+        {{-- ここに単語帳一覧が表示される --}}
+        <div>
+        {{-- <button onclick="location.href='{{ route('home.create')}}'">新しく英単語帳を作成する</button> --}}
+        <button onclick="location.href='{{ url('home/create')}}'>新しく英単語帳を作成する</button>
+        </div>
         <div>
             <table border="1">
                 <thead>
@@ -32,8 +32,6 @@
                         <th>単語帳</th>
                         <th>内容</th>
                         <th>単語帳を開く</th>
-                        <th>編集</th>
-                        <th>削除</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -42,14 +40,12 @@
                             <td>{{$notebook->notebook_name}}</td>
                             <td>{{$notebook->discription}}</td>
                             <td>
-                                <a href="{{ url('word', [$notebook->id])}}">単語帳を開く</a>
-                            </td>
-                            <td>
-                                <button onclick="location.href='{{ route('home.edit', $notebook->id) }}'">編集</button>
+                                {{-- <a href="{{ route('word.index', $id = $notebook->id) }}">Go!</a> --}}
+                                <a href="{{ url('home/word/index', [$notebook->id])}}">単語帳を開く</a>
                             </td>
 
-                            <td>
-                                <form action="{{ route('home.destroy', $notebook->id) }}" method="post">
+                            {{-- <td>
+                                <form action="{{ route('word.destroy', $word->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
@@ -57,7 +53,7 @@
                                         削除
                                     </button>
                                 </form>
-                            </td>
+                            </td> --}}
                         </tr>
                         @endforeach
                     </tbody>

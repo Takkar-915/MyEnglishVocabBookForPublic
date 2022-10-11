@@ -15,4 +15,9 @@ class Word extends Model
         'mean',
         'is_memorized'
     ];
+
+    public function notebook()
+    {
+        return $this->belongsTo('Notebook');
+    }
 }

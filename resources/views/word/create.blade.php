@@ -2,7 +2,10 @@
 
 @section('content')
     <h2>新規英単語登録</h2>
-    <form action="{{ route('word.store') }}" method="post">
+    @php
+    $id = $notebook_id
+    @endphp
+    <form action="{{ url("word/{$id}/store")}}" method="post">
         @csrf
         <div>
             <label for="kind">品詞</label>
@@ -26,7 +29,7 @@
         </div>
 
         <div>
-            <a href="{{ route('word.index') }}" role="button">戻る</a>
+            <a href="{{ url("word/{$notebook_id}")}}" role="button">戻る</a>
         </div>
 
         <button type="submit">登録</button>
