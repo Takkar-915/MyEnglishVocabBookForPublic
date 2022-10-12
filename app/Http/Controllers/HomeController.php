@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NotebookRequest;
 use App\Models\Notebook;
+use App\Models\Word;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -96,6 +97,8 @@ class HomeController extends Controller
 
     public function destroy($id)
     {
+        Word::where('notebook_id', $id)->delete();
+
         Notebook::where('id', $id)->delete();
 
         return redirect()->route('home.index')->with('message', '削除しました。');

@@ -156,8 +156,6 @@ class WordsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // viewでmessageを表示、テストを続けるか否かも表示する
-
     public function result(Request $request, $id)
     {
         $postedAnswer = $request->question;
@@ -176,7 +174,7 @@ class WordsController extends Controller
             'word.test',
             [
                 'words' => $words,
-                'notebook_id' => $id
+                'notebook_id' => $id,
             ]
         );
     }

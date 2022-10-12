@@ -53,7 +53,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                        onclick="return confirm('削除してもよろしいですか?');">
+                                        onclick="return confirm('この英単語帳内のすべての英単語も削除されます。本当によろしいですか?');">
                                         削除
                                     </button>
                                 </form>
