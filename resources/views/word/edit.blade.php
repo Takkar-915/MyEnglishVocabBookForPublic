@@ -16,11 +16,11 @@
             </select>
 
                     <label for="word">英単語</label>
-                    <input type="text" class="form-control" id="word" name="word"
+                    <input type="text" id="word" name="word"
                         value="{{ old('word', $word->word) }}" placeholder="英単語" />
 
                     <label for="mean">意味</label>
-                    <input type="text" class="form-control" id="mean" name="mean"
+                    <input type="text" id="mean" name="mean"
                         value="{{ old('mean', $word->mean) }}" placeholder="意味" />
 
                     <label for="is_memorized">暗記した？</label>

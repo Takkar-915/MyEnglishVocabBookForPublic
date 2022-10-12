@@ -37,10 +37,8 @@ Route::get('/word/{notebook_id}', [WordsController::class, 'index'])->name('word
 Route::get('/word/{notebook_id}/create', [WordsController::class, 'create'])->name('word.create');
 Route::post('/word/{notebook_id}/store', [WordsController::class, 'store'])->name('word.store');
 Route::get('/word/{notebook_id}/edit/{word_id}', [WordsController::class, 'edit'])->name('word.edit');
-// Route::post('/word/{notebook_id}/update/{word_id}', [WordsController::class, 'update'])->name('word.update');
 Route::put('/word/{notebook_id}/update/{word_id}', [WordsController::class, 'update'])->name('word.update');
 Route::delete('/word/{notebook_id}/destroy/{word_id}', [WordsController::class, 'destroy'])->name('word.destroy');
+
 Route::get('/word/{notebook_id}/test', [WordsController::class, 'test'])->name('word.test');
-
-
-// Route::resource('/home/{id}', WordsController::class, ['except' => ['show']]);
+Route::post('/word/{notebook_id}/result', [WordsController::class, 'result'])->name('word.result');

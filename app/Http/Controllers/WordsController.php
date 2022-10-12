@@ -30,7 +30,7 @@ class WordsController extends Controller
      */
     public function index($id)
     {
-        $words = Word::where('notebook_id', $id)->get();
+        $words = Word::where('notebook_id', $id)->orderBy('is_memorized', 'asc')->get();
 
         return view(
             'word.index',
@@ -138,14 +138,46 @@ class WordsController extends Controller
 
     public function test($id)
     {
-        $words = Word::where('notebook_id', $id)->get();
+        $words = Word::where('notebook_id', $id)->inRandomOrder()->take(4)->get();
+        return view(
+            'word.test',
+            [
+                'words' => $words,
+                'notebook_id' => $id
+            ]
+        );
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    // viewでmessageを表示、テストを続けるか否かも表示する
+
+    public function result(Request $request, $id)
+    {
+        $postedAnswer = $request->question;
+        $correctAnswer = $request->correctMean;
+        $questionWord = $request->correctWord;
+
+        if ($correctAnswer === $postedAnswer) {
+            session()->flash('message', "正解！");
+        } else {
+            session()->flash('message', "不正解！{$questionWord}は　{$correctAnswer}　です");
+        }
+
+        $words = Word::where('notebook_id', $id)->inRandomOrder()->take(4)->get();
 
         return view(
             'word.test',
             [
                 'words' => $words,
                 'notebook_id' => $id
-            ],
+            ]
         );
     }
 }

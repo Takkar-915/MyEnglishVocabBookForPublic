@@ -12,6 +12,16 @@
         <a href='{{ url("home")}}'>単語帳一覧に戻る</a>
     </div>
 
+    @if(count($words) >= 10)
+    <div>
+        <a href='{{ url("word/{$notebook_id}/test")}}'>英単語テスト</a>
+    </div>
+    @else
+    <div>
+        <p>英単語テストは登録された英単語数が10を超えたらできるようになります。</p>
+    </div>
+    @endif
+
     <div>
         <table border="1">
             <thead>
