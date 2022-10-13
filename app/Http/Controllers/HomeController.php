@@ -30,7 +30,7 @@ class HomeController extends Controller
         $notebooks = Notebook::where('user_id', Auth::user()->id)->get();
 
         return view(
-            'home',
+            'home.home',
             ['notebooks' => $notebooks]
         );
     }

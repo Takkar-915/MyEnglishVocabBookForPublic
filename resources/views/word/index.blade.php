@@ -1,29 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
-    <h1>英単語一覧</h1>
+<div class="text-center">
+    <h1 class="mb-3">{{$notebook->notebook_name}}</h1>
+    <p>{{$notebook->discription}}</p>
 
-    <div>
-        <a href='{{ url("word/{$notebook_id}/create")}}'>新しく英単語を登録する</a>
+    <div class="mb-5">
+    <div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="location.href='{{ url("home")}}'">英単語帳一覧に戻る</button>
+            <button class="btn btn-secondary" onclick="location.href='{{ url("word/{$notebook_id}/create")}}'">新しく英単語を登録する</button>
+            @if(count($words) >= 10)
+            <button class="btn btn-secondary" onclick="location.href='{{ url("word/{$notebook_id}/test")}}'">英単語テスト</button>
+            @else
+            <button class="btn btn-secondary" onclick="location.href='{{ url("word/{$notebook_id}")}}'">coming soon…</button>
+            @endif
+        </div>
+    </div>
+    </div>
     </div>
 
+    @if(count($words) < 10)
     <div>
-        <a href='{{ url("home")}}'>単語帳一覧に戻る</a>
-    </div>
-
-    @if(count($words) >= 10)
-    <div>
-        <a href='{{ url("word/{$notebook_id}/test")}}'>英単語テスト</a>
-    </div>
-    @else
-    <div>
-        <p>英単語テストは登録された英単語数が10を超えたらできるようになります。</p>
+        <p class="mb-5">登録された英単語数が10を超えたら英単語テストができるようになります。</p>
     </div>
     @endif
 
+
     <div>
-        <table border="1">
+        <table class="table table-bordered border-primary">
             <thead>
                 <tr>
                     <th>品詞</th>

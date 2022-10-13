@@ -32,11 +32,14 @@ class WordsController extends Controller
     {
         $words = Word::where('notebook_id', $id)->orderBy('is_memorized', 'asc')->get();
 
+        $notebooks = Notebook::where('id', $id)->get();
+
         return view(
             'word.index',
             [
                 'words' => $words,
-                'notebook_id' => $id
+                'notebook_id' => $id,
+                'notebook' => $notebooks[0]
             ],
         );
     }
